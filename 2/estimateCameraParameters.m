@@ -60,14 +60,9 @@ function [R, t, k, f] = estimateCameraParameters (calibPoints)
     
     t = [tx, ty, NaN]' / k;
     
-    R
-    
     %% 2) Determine the remaining parameters f and t_z
     [f, t(3)] = determineRemainingParameters (calibPoints, R, t, k);
     
-    
-    f
-    t
     %% 3) check whether f is negativ
     if f < 0
         R(1, 3) = -R(1, 3);
@@ -86,10 +81,8 @@ function [f, tz] = determineRemainingParameters (calibPoints, R, t, k)
 
     B = [calibPoints(:, 4) ...
          -sum(calibPoints(:, 1:2) .* repmat (R(2, 1:2), [m, 1]), 2) - repmat(t(2), [m, 1])];
-     B
     c = -calibPoints(:, 4) .* repmat (R(3, 1), [m ,1]) .* calibPoints(:, 1) ...
         - calibPoints(:, 4) .* repmat (R(3, 2), [m ,1]) .* calibPoints(:, 2);
-    c
     
     % get f and t_z using the formula: x = (B' * B)^(-1) * B'c
 %     x = inv(B' * B) * B' * c;
