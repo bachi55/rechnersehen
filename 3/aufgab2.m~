@@ -1,20 +1,17 @@
 %% read data
-[calibPoints, img1, img2] = readDataToWorkspace ( ...
-    '/home/va54tuz/Documents/ss15/rechnersehen-2/exercise/3/data/img1_points.txt', ... 
-    '/home/va54tuz/Documents/ss15/rechnersehen-2/exercise/3/data/img1_0.jpg', ...
-    '/home/va54tuz/Documents/ss15/rechnersehen-2/exercise/3/data/img1_1.jpg' ...
-    );
-
-if any (size (img1) ~= size (img2))
-    error ('Images have to have the same size!');
-end % if
-[iH, iW, ~] = size (img1);
-
+% filename = '/home/va54tuz/Documents/ss15/rechnersehen-2/exercise/2/daten/input0/points.txt';
+calibPoints = csvread ('/home/va54tuz/Documents/ss15/rechnersehen-2/exercise/3/data/img1_points.txt');
 m = size (calibPoints, 1);
 
+% img1 = imread ('/home/va54tuz/Documents/ss15/rechnersehen-2/exercise/3/data/input0/input.ppm');
+% imshow (calibImg);
+% [iH, iW, ~] = size (calibImg);
+
 %% prepare calibration point-coordinates
-o_x = round (iW / 2);
-o_y = round (iH / 2);
+% o_x = round (iW / 2);
+% o_y = round (iH / 2);
+o_x = round (640 / 2);
+o_y = round (480 / 2);
 
 calibPointsNorm = calibPoints;
 calibPointsNorm = calibPointsNorm  - repmat ([o_x, o_y], [m, 2]); % shift center to (o_x, o_y)
