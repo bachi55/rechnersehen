@@ -1,4 +1,4 @@
-function plotCorrespodingPoints (img1, img2, kp1, kp2, f1, f2)
+function plotCorrespodingPoints (img1, img2, kp1, kp2)
     if (any (size (img1) ~= size (img2)))
         error ('Images should have the same size.')
     end % if

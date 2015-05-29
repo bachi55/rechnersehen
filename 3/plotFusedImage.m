@@ -11,5 +11,7 @@ function [iWFused, iHFused] = plotFusedImage (img1, img2)
     
     imshow (fusedImage); title ('Epipolarlines');
     
-    [iHFused, iWFused] = size (fusedImage);
+    
+    
+    [iHFused, iWFused, ~] = size (fusedImage);
 end % function
